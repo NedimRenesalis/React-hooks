@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ nano src/components/Product/Product.js1~ nano src/components/Product/Product.js1~import React, { useState } from 'react';
 import './Product.css';
 
 const currencyOptions = {
@@ -6,20 +6,21 @@ const currencyOptions = {
   maximumFractionDigits: 2,
 }
 
+function getTotal(total) {
+  return total.toLocaleString(undefined, currencyOptions)
+}
+
 export default function Product() {
   const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState(0); 
- 
- function getTotal() {
-    return total.toLocaleString(undefined, currencyOptions)
-  }
- 
+  const [total, setTotal] = useState(0);
+
+
   return(
     <div className="wrapper">
       <div>
         Shopping Cart: {cart.length} total items.
       </div>
-      <div>Total: {getTotal()}</div>
+      <div>Total: {getTotal(total)}</div><^>
 
       <div className="product"><span role="img" aria-label="ice cream">🍦</span></div>
       <button>Add</button> <button>Remove</button>
