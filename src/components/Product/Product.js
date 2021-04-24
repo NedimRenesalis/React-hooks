@@ -10,6 +10,24 @@ function getTotal(total) {
   return total.toLocaleString(undefined, currencyOptions)
 }
 
+const products = [
+  {
+    emoji: '🍦',
+    name: 'ice cream',
+    price: 5
+  },
+  {
+    emoji: '🍩',
+    name: 'donuts',
+    price: 2.5,
+  },
+  {
+    emoji: '🍉',
+    name: 'watermelon',
+    price: 4
+  }
+];
+
 export default function Product() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
@@ -25,17 +43,17 @@ function add() {
         Shopping Cart: {cart.length} total items.
       </div>
       <div>Total: {getTotal(total)}</div>
-
-      <div className="product"><span role="img" aria-label="ice cream">🍦</span></div>
-      <button onClick={add}>Add</button>
-      <button
-         onClick={() => {
-          setCart([]);
-          setTotal(0);
-        }}
-      >
-        Remove
-      </button>
+        <div>
+        {products.map(product => (
+          <div key={product.name}>
+            <div className="product">
+              <span role="img" aria-label={product.name}>{product.emoji}</span>
+            </div>
+            <button>Add</button>
+            <button>Remove</button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
