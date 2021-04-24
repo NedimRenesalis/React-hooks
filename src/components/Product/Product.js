@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import './Product.css';
 
 const currencyOptions = {
@@ -28,12 +28,16 @@ const products = [
   }
 ];
 
+function cartReducer(state, product) {
+  return [...state, product]
+}
+
 export default function Product() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useReducer(cartReducer, []);
   const [total, setTotal] = useState(0);
 
 function add(product) {
-    setCart(current => [...current, product.name]);
+    setCart(product.name);
     setTotal(current => current + product.price);
   }
 
